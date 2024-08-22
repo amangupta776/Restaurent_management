@@ -1,0 +1,27 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-08-20 12:57:44.788048",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2024-08-20 12:57:44.788048",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Daily Sales Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\n    order_date AS date,\n    SUM(total_amount) AS total_sales,\n    COUNT(name) AS number_of_orders,\n    AVG(total_amount) AS average_order_value\nFROM\n    `tabOrder`\nWHERE\n    status = 'Completed'\nGROUP BY\n    order_date\nORDER BY\n    order_date DESC;\n\n\n\n\n",
+ "ref_doctype": "Order",
+ "report_name": "Daily Sales Report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

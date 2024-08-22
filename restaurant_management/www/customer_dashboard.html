@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paperboy</title>
+    <style>
+        /* Your existing styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            color: #5d78c3;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: #e63912;
+        }
+
+        .user-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .user-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .user-menu a:hover {
+            color: #e63912;
+        }
+
+        .content img {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+
+        .content img:hover {
+            transform: scale(1.05);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            cursor: pointer;
+            padding: 15px 30px;
+            background-color: #e63912;
+            color: #fff;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .buttons a:hover {
+            background-color: #c12e10;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .container2 {
+                height: auto;
+                padding: 40px 20px;
+            }
+
+            .menu li {
+                margin: 0 10px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .buttons a {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .description {
+                padding: 0 10px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container2">
+        <div class="logo">PAPERBOY</div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/Menu">Menu</a></li>
+                <li><a href="/Resarvation">Reservations</a></li>
+                <li><a href="#">Order online</a></li>
+                <li><a href="#">Events & catering</a></li>
+            </ul>
+        </div>
+
+        <!-- User menu in the top right corner -->
+        {% if frappe.session.user != "Guest" %}
+            <div class="user-menu">
+                <a href="/me">My Profile ({{ frappe.session.user }})</a>
+                <a href="/?cmd=web_logout">Logout</a>
+            </div>
+        {% endif %}
+
+        <div class="content">
+            <img src="https://images.unsplash.com/photo-1560611588-163f295eb145?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Restaurant" class="image">
+            <div class="description">
+                Welcome to Paperboy, where we bring you an unparalleled dining experience. Our menu features a curated selection of exquisite dishes crafted from the finest ingredients. Whether you're here for a quick bite or a full-course meal, we promise an unforgettable culinary journey. Don't miss out on our special events and catering services for your next big celebration!
+            </div>
+            <div class="buttons">
+                <a href="#">Order Online</a>
+                <a href="#">Reservations</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

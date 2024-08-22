@@ -122,13 +122,19 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	# "*": {
+	# 	"on_update": "method",
+	# 	"on_cancel": "method",
+	# 	"on_trash": "method"
+	# }
+ 
+    "User": {
+        "after_insert": "restaurant_management.Customization.create_customer.create_customer_from_user"
+    },
+  
+}
+
 
 # Scheduled Tasks
 # ---------------

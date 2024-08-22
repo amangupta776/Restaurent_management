@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-20 12:27:42.024535",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "table",
+  "reservation_date",
+  "reservation_time",
+  "status",
+  "number_of_people",
+  "reservation_items"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "table",
+   "fieldtype": "Link",
+   "label": "Table",
+   "options": "Table"
+  },
+  {
+   "fieldname": "reservation_date",
+   "fieldtype": "Date",
+   "label": "Reservation Date"
+  },
+  {
+   "fieldname": "reservation_time",
+   "fieldtype": "Time",
+   "label": "Reservation Time"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nConfirmed\nCompleted\nCancelled"
+  },
+  {
+   "fieldname": "number_of_people",
+   "fieldtype": "Int",
+   "label": "Number of People"
+  },
+  {
+   "fieldname": "reservation_items",
+   "fieldtype": "Table",
+   "label": "Reservation Items",
+   "options": "Reservation Items"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 12:01:41.792646",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Reservation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Customer",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

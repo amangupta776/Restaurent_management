@@ -1,0 +1,21 @@
+{
+ "creation": "2024-08-22 11:30:03.138197",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "filters_json": "null",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Total Daily Reservation",
+ "method": "restaurant_management.api.Total_resarvation_daily.get_daily_reservation_count",
+ "modified": "2024-08-22 11:39:30.251252",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Total Daily Reservation",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Custom"
+}

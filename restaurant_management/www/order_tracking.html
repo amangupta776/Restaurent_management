@@ -1,0 +1,111 @@
+
+{% extends "templates/web.html" %}
+
+{% block title %}
+Order Tracking
+{% endblock %}
+
+{% block content %}
+<div class="order-tracking">
+  <h2 style="text-align: center;">Track Your Order</h2>
+  <div id="order-status"></div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof frappe !== 'undefined') {
+      const user_email = "{{ frappe.session.user }}";
+      const url = `/api/resource/Order?filters=[["customer","=","${user_email}"]]&fields=["*"]`;
+
+      fetch(url, {
+
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.data)
+        if (data && data.data && data.data.length > 0) {
+          let orders = data.data;
+          let orderCards = "";
+          orders.map(function(order) {
+            orderCards += `
+              <div class="order-card">
+                <h3>Order #${order.name}</h3>
+                <p><strong>Status:</strong> ${order.status}</p>
+                <p><strong>Table:</strong> ${order.table}</p>
+                <p><strong>Order Date:</strong> ${order.order_date}</p>
+                <p><strong>Total Amount:</strong> $${order.total_amount}</p>
+                <div class="order-items">
+                  `;
+        
+            orderCards += `
+                  </ul>
+                </div>
+              </div>`;
+          });
+          document.getElementById("order-status").innerHTML = orderCards;
+        } else {
+          document.getElementById("order-status").innerHTML = "<p>No orders found.</p>";
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching orders:', error);
+        document.getElementById("order-status").innerHTML = "<p>There was an error fetching your orders.</p>";
+      });
+    } else {
+      console.error('Frappe is not defined.');
+      document.getElementById("order-status").innerHTML = "<p>Frappe framework not loaded.</p>";
+    }
+  });
+</script>
+
+<style>
+  .order-tracking {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .order-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .order-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+  }
+
+  .order-card p {
+    margin: 5px 0;
+    color: #555;
+  }
+
+  .order-items {
+    margin-top: 15px;
+  }
+
+  .order-items h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+
+  .order-items ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .order-items ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .order-items ul li:last-child {
+    border-bottom: none;
+  }
+</style>
+{% endblock %}

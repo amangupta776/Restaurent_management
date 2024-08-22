@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-20 12:38:45.182838",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "staff_name",
+  "role",
+  "contact",
+  "shift_timing",
+  "salary"
+ ],
+ "fields": [
+  {
+   "fieldname": "staff_name",
+   "fieldtype": "Data",
+   "label": "Staff Name"
+  },
+  {
+   "fieldname": "role",
+   "fieldtype": "Select",
+   "label": "Role",
+   "options": "Chef\nWaiter\nManager\nClearner"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Phone",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "shift_timing",
+   "fieldtype": "Time",
+   "label": "Shift Timing"
+  },
+  {
+   "fieldname": "salary",
+   "fieldtype": "Int",
+   "label": "Salary"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-20 12:40:20.615280",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Staff",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

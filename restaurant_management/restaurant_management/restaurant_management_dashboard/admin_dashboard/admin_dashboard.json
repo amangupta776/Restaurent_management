@@ -1,0 +1,30 @@
+{
+ "cards": [
+  {
+   "card": "Total Daily Reservation"
+  },
+  {
+   "card": "Total Daily Order"
+  },
+  {
+   "card": "Today Total Sale"
+  }
+ ],
+ "charts": [
+  {
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-08-22 11:31:06.929091",
+ "dashboard_name": "Admin Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 1,
+ "is_standard": 1,
+ "modified": "2024-08-22 11:55:11.159963",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Admin Dashboard",
+ "owner": "Administrator"
+}
