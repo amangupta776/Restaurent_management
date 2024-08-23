@@ -1,0 +1,16 @@
+{
+  "name": "restaurant_management",
+  "version": "1.0.0",
+  "description": "Restaurant",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd rm && yarn install",
+    "dev": "cd rm && yarn dev",
+    "build": "cd rm && yarn build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

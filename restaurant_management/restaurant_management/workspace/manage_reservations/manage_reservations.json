@@ -1,0 +1,44 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"gOIUxG6YQM\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Manage Reservations</span>\",\"col\":12}},{\"id\":\"BaE-NVe0QP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add New Reservation\",\"col\":3}},{\"id\":\"nRjA2F1AnL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manage reservation\",\"col\":3}}]",
+ "creation": "2024-08-23 15:51:48.559415",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Manage Reservations",
+ "links": [],
+ "modified": "2024-08-23 16:23:26.273885",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Manage Reservations",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 28.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Manage reservation",
+   "link_to": "Reservation",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Add New Reservation",
+   "type": "URL",
+   "url": "/app/reservation/new-reservation"
+  }
+ ],
+ "title": "Manage Reservations"
+}

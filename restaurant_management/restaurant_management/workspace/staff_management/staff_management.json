@@ -1,0 +1,44 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"KXx9oIP_yf\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Staff Management</span>\",\"col\":12}},{\"id\":\"0xiZfXw8OH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manage Staff\",\"col\":3}},{\"id\":\"EMBwP3yX8T\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add Staff\",\"col\":3}}]",
+ "creation": "2024-08-23 16:19:44.778304",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Staff Management",
+ "links": [],
+ "modified": "2024-08-23 16:32:31.765987",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Staff Management",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 32.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Manage Staff",
+   "link_to": "Staff",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Add Staff",
+   "type": "URL",
+   "url": "/app/staff/new"
+  }
+ ],
+ "title": "Staff Management"
+}

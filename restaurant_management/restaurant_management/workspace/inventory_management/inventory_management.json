@@ -1,0 +1,45 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"Tv4ADBT6-I\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Inventory Management</span>\",\"col\":12}},{\"id\":\"bzMf-_E18J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Inventory Item Management\",\"col\":3}},{\"id\":\"7_ooea1epm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manage Inventory Transactions\",\"col\":3}}]",
+ "creation": "2024-08-23 16:12:31.108993",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Inventory Management",
+ "links": [],
+ "modified": "2024-08-23 16:32:40.646658",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Inventory Management",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 31.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Inventory Item Management",
+   "link_to": "Inventory Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Manage Inventory Transactions",
+   "link_to": "Inventory Transaction",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Inventory Management"
+}

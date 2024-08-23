@@ -1,0 +1,44 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"AdJw42Tx4c\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Manage Menu Items</span>\",\"col\":12}},{\"id\":\"4SHTa1ScDm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manage Menu Item\",\"col\":3}},{\"id\":\"NiZe2RHRNx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add New Menu Item\",\"col\":3}}]",
+ "creation": "2024-08-23 16:05:59.676809",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Manage Menu Items",
+ "links": [],
+ "modified": "2024-08-23 16:22:35.475304",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Manage Menu Items",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 30.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Manage Menu Item",
+   "link_to": "Menu Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Add New Menu Item",
+   "type": "URL",
+   "url": "/app/menu-item/new"
+  }
+ ],
+ "title": "Manage Menu Items"
+}

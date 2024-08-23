@@ -8,7 +8,7 @@ app_license = "mit"
 
 # Includes in <head>
 # ------------------
-
+# Add this to your hooks.py
 # include js, css files in header of desk.html
 # app_include_css = "/assets/restaurant_management/css/restaurant_management.css"
 # app_include_js = "/assets/restaurant_management/js/restaurant_management.js"
@@ -59,7 +59,10 @@ app_license = "mit"
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
+# jinja = {# Add this to your hooks.py
+
+
+
 # 	"methods": "restaurant_management.utils.jinja_methods",
 # 	"filters": "restaurant_management.utils.jinja_filters"
 # }
@@ -132,6 +135,7 @@ doc_events = {
     "User": {
         "after_insert": "restaurant_management.Customization.create_customer.create_customer_from_user"
     },
+   
   
 }
 
@@ -233,3 +237,5 @@ doc_events = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+website_route_rules = [{'from_route': '/rm/<path:app_path>', 'to_route': 'rm'},]
