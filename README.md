@@ -125,8 +125,8 @@ Deploy the app to the production server.
 Provide training for staff on using the new system.
 Create comprehensive documentation for users and administrators.
 **User Roles and Permissions**
-## Admin: Full access to all features.
-## Manager: Access to manage reservations, orders, and view reports.
-## Chef: Access to view orders and update status.
-## Waiter: Access to view reservations and manage tables.
-## Customer: Access to book tables, view menu, and track orders.
+### Admin: Full access to all features.
+### Manager: Access to manage reservations, orders, and view reports.
+### Chef: Access to view orders and update status.
+### Waiter: Access to view reservations and manage tables.
+### Customer: Access to book tables, view menu, and track orders.
