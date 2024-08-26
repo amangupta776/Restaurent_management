@@ -6,8 +6,6 @@ const Menu = () => {
   
   const [activeFilter, setActiveFilter] = useState('all');
   
- 
-  // Fetch menu items using Frappe's provider method
   const { data: menuItems, error } = useFrappeGetDocList('Menu Item', {
     fields: ['item_name', 'description', 'price', 'category'],
     filters: {

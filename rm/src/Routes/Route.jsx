@@ -5,13 +5,12 @@ import Menu from "../Screens/Menu";
 import ReservationForm from "../Screens/Resarvation";
 import Login from "../Screens/Login";
 import ContactUs from "../Screens/Contact";
-import Layout from "../Screens/Layout";
 const Routings = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />} />
-        <Route index element={<Home />} />
+
+        <Route path="/" index element={<Home />} />
         <Route path="/order" element={<OrderTracking />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/reservation" element={<ReservationForm />} />
