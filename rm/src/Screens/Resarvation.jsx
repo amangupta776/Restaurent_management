@@ -29,6 +29,10 @@ const ReservationForm = () => {
     }
   }, [tablesError, menuItemsError, submitError]);
 
+  // Get today's date and current time
+  const today = new Date().toISOString().split('T')[0];
+  const currentTime = new Date().toTimeString().split(' ')[0].slice(0, 5);
+
   const handleAddRow = () => {
     setReservationItems([...reservationItems, { item: '', quantity: '', specialRequests: '' }]);
   };
@@ -65,7 +69,6 @@ const ReservationForm = () => {
     try {
       await createDoc('Reservation', data);
       alert('Reservation submitted successfully.');
-      navigate('/'); // Redirect to home or any other page
     } catch (error) {
       console.error('Error:', error);
       alert('Error: ' + error.message);
@@ -94,11 +97,25 @@ const ReservationForm = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="reservation_date" className="block font-semibold mb-2">Reservation Date</label>
-              <input type="date" id="reservation_date" name="reservation_date" required className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" />
+              <input 
+                type="date" 
+                id="reservation_date" 
+                name="reservation_date" 
+                required 
+                min={today} // Disable past dates
+                className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" 
+              />
             </div>
             <div className="mb-4">
               <label htmlFor="reservation_time" className="block font-semibold mb-2">Reservation Time</label>
-              <input type="time" id="reservation_time" name="reservation_time" required className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" />
+              <input 
+                type="time" 
+                id="reservation_time" 
+                name="reservation_time" 
+                required 
+                min={currentTime} // Restrict time to current time onwards
+                className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" 
+              />
             </div>
             <div className="mb-4">
               <label htmlFor="number_of_people" className="block font-semibold mb-2">Number of People</label>
