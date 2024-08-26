@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{####}",
  "creation": "2024-08-20 12:27:42.024535",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -56,10 +57,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 12:01:41.792646",
+ "modified": "2024-08-26 12:50:16.439336",
  "modified_by": "Administrator",
  "module": "Restaurant Management",
  "name": "Reservation",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

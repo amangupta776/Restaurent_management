@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFrappeAuth, useFrappeGetDocList } from 'frappe-react-sdk';
+import { useFrappeAuth, useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
 import Navbar from '../Components/NavBar';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,11 +17,17 @@ const ReservationForm = () => {
   // Fetch menu items
   const { data: menuItems, error: menuItemsError } = useFrappeGetDocList('Menu Item');
 
+  // Using Frappe Create Doc hook for submitting the reservation
+  const { createDoc, loading: submitting, error: submitError } = useFrappeCreateDoc();
+
   useEffect(() => {
     if (tablesError || menuItemsError) {
       setError('Error fetching data.');
     }
-  }, [tablesError, menuItemsError]);
+    if (submitError) {
+      setError('Error submitting reservation.');
+    }
+  }, [tablesError, menuItemsError, submitError]);
 
   const handleAddRow = () => {
     setReservationItems([...reservationItems, { item: '', quantity: '', specialRequests: '' }]);
@@ -44,20 +50,22 @@ const ReservationForm = () => {
 
     const formData = new FormData(e.target);
     const data = {
-      customer: currentUser?.email, // Ensure customer is valid
+      customer: currentUser, // Ensure customer is valid
       table: formData.get('table'),
       reservation_date: formData.get('reservation_date'),
       reservation_time: formData.get('reservation_time'),
       number_of_people: formData.get('number_of_people'),
-      reservation_items: reservationItems,
+      reservation_items: reservationItems.map(item => ({
+        item: item.item,
+        quantity: item.quantity,
+        special_requests: item.specialRequests,
+      })),
     };
 
     try {
-      const doc = await frappe.new_doc('Reservation', data);
-      await frappe.insert_doc(doc);
+      await createDoc('Reservation', data);
       alert('Reservation submitted successfully.');
-      e.target.reset();
-      setReservationItems([]);
+      navigate('/'); // Redirect to home or any other page
     } catch (error) {
       console.error('Error:', error);
       alert('Error: ' + error.message);
@@ -123,7 +131,7 @@ const ReservationForm = () => {
                         <input type="number" name="quantity" value={item.quantity} onChange={(e) => handleChangeRow(index, e)} className="w-full p-2 border border-gray-600 rounded-lg bg-gray-700" />
                       </td>
                       <td className="border-b p-2">
-                        <input type="text" name="special_requests" value={item.specialRequests} onChange={(e) => handleChangeRow(index, e)} className="w-full p-2 border border-gray-600 rounded-lg bg-gray-700" />
+                        <input type="text" name="specialRequests" value={item.specialRequests} onChange={(e) => handleChangeRow(index, e)} className="w-full p-2 border border-gray-600 rounded-lg bg-gray-700" />
                       </td>
                       <td className="border-b p-2 text-center">
                         <button type="button" onClick={() => handleRemoveRow(index)} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Remove</button>
@@ -135,7 +143,9 @@ const ReservationForm = () => {
               <button type="button" onClick={handleAddRow} className="mt-4 bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-800">Add Item</button>
             </div>
 
-            <button type="submit" className="w-full bg-red-700 text-white py-3 rounded-lg hover:bg-red-800">Submit</button>
+            <button type="submit" className="w-full bg-red-700 text-white py-3 rounded-lg hover:bg-red-800" disabled={submitting}>
+              {submitting ? 'Submitting...' : 'Submit'}
+            </button>
           </form>
         ) : (
           <p className="text-center text-red-500">Please log in to make a reservation.</p>
