@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Manage Order",
  "links": [],
- "modified": "2024-08-23 16:29:13.960410",
+ "modified": "2024-08-26 11:09:58.595381",
  "modified_by": "Administrator",
  "module": "Restaurant Management",
  "name": "Manage Order",
@@ -26,7 +26,17 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Administrator"
+  },
+  {
+   "role": "Manager"
+  },
+  {
+   "role": "Chef"
+  }
+ ],
  "sequence_id": 29.0,
  "shortcuts": [
   {

@@ -1,0 +1,45 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"4zSaP1Lsa8\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Daily Report</b></span>\",\"col\":12}},{\"id\":\"6GEYlFBAr0\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today Total Sale\",\"col\":4}},{\"id\":\"xmnFVe9Z1F\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Daily Order\",\"col\":4}},{\"id\":\"0HDm8mkC83\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today Total Resarvation\",\"col\":4}}]",
+ "creation": "2024-08-24 00:44:42.820885",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Admin Dashboard",
+ "links": [],
+ "modified": "2024-08-26 11:05:56.211457",
+ "modified_by": "Administrator",
+ "module": "Restaurant Management",
+ "name": "Admin Dashboard",
+ "number_cards": [
+  {
+   "label": "Today Total Sale",
+   "number_card_name": "Today Total Sale"
+  },
+  {
+   "label": "Total Daily Order",
+   "number_card_name": "Total Daily Order"
+  },
+  {
+   "label": "Today Total Resarvation",
+   "number_card_name": "Total Daily Reservation"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Administrator"
+  }
+ ],
+ "sequence_id": 33.0,
+ "shortcuts": [],
+ "title": "Admin Dashboard"
+}

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"gOIUxG6YQM\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Manage Reservations</span>\",\"col\":12}},{\"id\":\"BaE-NVe0QP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add New Reservation\",\"col\":3}},{\"id\":\"nRjA2F1AnL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manage reservation\",\"col\":3}}]",
+ "content": "[{\"id\":\"gOIUxG6YQM\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Manage Reservations</span>\",\"col\":12}},{\"id\":\"Kcw3ohv4Jg\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Daily Reservation\",\"col\":4}},{\"id\":\"BaE-NVe0QP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Add New Reservation\",\"col\":3}},{\"id\":\"nRjA2F1AnL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Manage reservation\",\"col\":3}}]",
  "creation": "2024-08-23 15:51:48.559415",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,16 +12,28 @@
  "is_hidden": 0,
  "label": "Manage Reservations",
  "links": [],
- "modified": "2024-08-23 16:23:26.273885",
+ "modified": "2024-08-26 11:08:22.800159",
  "modified_by": "Administrator",
  "module": "Restaurant Management",
  "name": "Manage Reservations",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Total Daily Reservation",
+   "number_card_name": "Total Daily Reservation"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Manager"
+  },
+  {
+   "role": "Administrator"
+  }
+ ],
  "sequence_id": 28.0,
  "shortcuts": [
   {
