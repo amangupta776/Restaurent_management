@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useFrappeAuth, useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
 import Navbar from '../Components/NavBar';
 import { useNavigate } from 'react-router-dom';
+import CheckReservation from '../Components/ReservationAvailability';
 
 const ReservationForm = () => {
   const { currentUser } = useFrappeAuth();
   const [reservationItems, setReservationItems] = useState([]);
+  const [reservationTime, setReservationTime] = useState('');
+  const [endTime, setEndTime] = useState('');
   const [error, setError] = useState(null);
+  const [endTimeError, setEndTimeError] = useState(null);
+  const [endTimeEnabled, setEndTimeEnabled] = useState(false);
   const navigate = useNavigate();
 
   // Fetch available tables
@@ -49,16 +54,74 @@ const ReservationForm = () => {
     setReservationItems(updatedItems);
   };
 
+  const handleReservationTimeChange = (e) => {
+    const { value } = e.target;
+    setReservationTime(value);
+
+    // Enable end time field when reservation time is filled
+    if (value) {
+      setEndTimeEnabled(true);
+    } else {
+      setEndTimeEnabled(false);
+      setEndTime('');
+      setEndTimeError(null);
+    }
+  };
+
+  const handleEndTimeChange = (e) => {
+    const { value } = e.target;
+    setEndTime(value);
+
+    // Only validate if reservation time is set
+    if (reservationTime) {
+      // Calculate minimum end time
+      const [resHour, resMinute] = reservationTime.split(':').map(Number);
+      const resDate = new Date();
+      resDate.setHours(resHour, resMinute, 0, 0);
+
+      const minEndDate = new Date(resDate.getTime() + 30 * 60000); // 30 minutes in milliseconds
+
+      // Extract and parse end time
+      const [endHour, endMinute] = value.split(':').map(Number);
+      const endDate = new Date();
+      endDate.setHours(endHour, endMinute, 0, 0);
+
+      // Validate end time
+      if (endDate < minEndDate) {
+        setEndTimeError('End time must be at least 30 minutes after reservation time.');
+      } else {
+        setEndTimeError(null);
+      }
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
+    // Calculate minimum end time
+    const [resHour, resMinute] = reservationTime.split(':').map(Number);
+    const resDate = new Date();
+    resDate.setHours(resHour, resMinute, 0);
+
+    const minEndTime = new Date(resDate.getTime() + 30 * 60000); // Add 30 minutes
+    const [endHour, endMinute] = endTime.split(':').map(Number);
+    const endDate = new Date();
+    endDate.setHours(endHour, endMinute, 0);
+
+    if (endDate < minEndTime) {
+      setEndTimeError('End time must be at least 30 minutes after reservation time.');
+      return;
+    } else {
+      setEndTimeError(null);
+    }
+
     const data = {
       customer: currentUser, // Ensure customer is valid
-      table: formData.get('table'),
-      reservation_date: formData.get('reservation_date'),
-      reservation_time: formData.get('reservation_time'),
-      number_of_people: formData.get('number_of_people'),
+      table: e.target.table.value,
+      reservation_date: e.target.reservation_date.value,
+      reservation_time: reservationTime,
+      end_time: endTime,
+      number_of_people: e.target.number_of_people.value,
       reservation_items: reservationItems.map(item => ({
         item: item.item,
         quantity: item.quantity,
@@ -78,6 +141,7 @@ const ReservationForm = () => {
   return (
     <div className="bg-gray-900 min-h-screen pt-16 text-white">
       <Navbar />
+      {currentUser ? <CheckReservation /> : ""}
       <div className="max-w-lg mx-auto p-5 bg-gray-800 rounded-lg shadow-lg mt-12">
         <h2 className="text-center text-2xl font-bold mb-6">Reservation Form</h2>
         {currentUser ? (
@@ -114,8 +178,26 @@ const ReservationForm = () => {
                 name="reservation_time" 
                 required 
                 min={currentTime} // Restrict time to current time onwards
+                max="23:59"
+                onChange={handleReservationTimeChange}
                 className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" 
               />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="end_time" className="block font-semibold mb-2">Reservation End Time</label>
+              <input 
+                type="time" 
+                id="end_time" 
+                name="end_time" 
+                required 
+                min={currentTime} // Restrict time to current time onwards
+                max="23:59"
+                value={endTime}
+                onChange={handleEndTimeChange}
+                disabled={!endTimeEnabled}
+                className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" 
+              />
+              {endTimeError && <p className="text-red-500 mt-2">{endTimeError}</p>}
             </div>
             <div className="mb-4">
               <label htmlFor="number_of_people" className="block font-semibold mb-2">Number of People</label>
@@ -130,42 +212,67 @@ const ReservationForm = () => {
                     <th className="border-b py-2 px-4 bg-red-600">Item</th>
                     <th className="border-b py-2 px-4 bg-red-600">Quantity</th>
                     <th className="border-b py-2 px-4 bg-red-600">Special Requests</th>
-                    <th className="border-b py-2 px-4 bg-red-600">Action</th>
+                    <th className="border-b py-2 px-4 bg-red-600">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
                   {reservationItems.map((item, index) => (
                     <tr key={index}>
-                      <td className="border-b p-2">
-                        <select name="item" value={item.item} onChange={(e) => handleChangeRow(index, e)} className="w-full p-2 border border-gray-600 rounded-lg bg-gray-700">
-                          <option value="">Select an item</option>
-                          {menuItems?.map(menuItem => (
-                            <option key={menuItem.name} value={menuItem.name}>{menuItem.name}</option>
+                      <td className="border-b py-2 px-4">
+                        <select
+                          name="item"
+                          value={item.item}
+                          onChange={(e) => handleChangeRow(index, e)}
+                          className="w-full p-2 border border-gray-600 bg-gray-700 rounded-lg"
+                        >
+                          <option value="">Select item</option>
+                          {menuItems?.map((menuItem) => (
+                            <option key={menuItem.name} value={menuItem.name}>
+                              {menuItem.name}
+                            </option>
                           ))}
                         </select>
                       </td>
-                      <td className="border-b p-2">
-                        <input type="number" name="quantity" value={item.quantity} onChange={(e) => handleChangeRow(index, e)} className="w-full p-2 border border-gray-600 rounded-lg bg-gray-700" />
+                      <td className="border-b py-2 px-4">
+                        <input
+                          type="number"
+                          name="quantity"
+                          value={item.quantity}
+                          onChange={(e) => handleChangeRow(index, e)}
+                          className="w-full p-2 border border-gray-600 bg-gray-700 rounded-lg"
+                        />
                       </td>
-                      <td className="border-b p-2">
-                        <input type="text" name="specialRequests" value={item.specialRequests} onChange={(e) => handleChangeRow(index, e)} className="w-full p-2 border border-gray-600 rounded-lg bg-gray-700" />
+                      <td className="border-b py-2 px-4">
+                        <input
+                          type="text"
+                          name="specialRequests"
+                          value={item.specialRequests}
+                          onChange={(e) => handleChangeRow(index, e)}
+                          className="w-full p-2 border border-gray-600 bg-gray-700 rounded-lg"
+                        />
                       </td>
-                      <td className="border-b p-2 text-center">
-                        <button type="button" onClick={() => handleRemoveRow(index)} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Remove</button>
+                      <td className="border-b py-2 px-4 text-center">
+                        <button type="button" onClick={() => handleRemoveRow(index)} className="text-red-500 hover:text-red-700">
+                          Remove
+                        </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <button type="button" onClick={handleAddRow} className="mt-4 bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-800">Add Item</button>
+              <button type="button" onClick={handleAddRow} className="mt-4 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg">
+                Add Row
+              </button>
             </div>
-
-            <button type="submit" className="w-full bg-red-700 text-white py-3 rounded-lg hover:bg-red-800" disabled={submitting}>
-              {submitting ? 'Submitting...' : 'Submit'}
-            </button>
+            <div className="flex justify-center">
+              <button type="submit" disabled={submitting} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg">
+                {submitting ? 'Submitting...' : 'Submit Reservation'}
+              </button>
+            </div>
+            {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
           </form>
         ) : (
-          <p className="text-center text-red-500">Please log in to make a reservation.</p>
+          <p className="text-center text-lg font-semibold">Please log in to make a reservation.</p>
         )}
       </div>
     </div>

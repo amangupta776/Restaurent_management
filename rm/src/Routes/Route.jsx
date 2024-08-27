@@ -9,7 +9,6 @@ const Routings = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" index element={<Home />} />
         <Route path="/order" element={<OrderTracking />} />
         <Route path="/menu" element={<Menu />} />
