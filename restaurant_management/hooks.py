@@ -134,10 +134,6 @@ doc_events = {
  
     "User": {
         "after_insert": "restaurant_management.Customization.create_customer.create_customer_from_user"
-    },
-   "Reservation": {
-        "validate": "restaurant_management.Customization.DateChecking_onReservation.validate_reservation",
-        "on_update": "restaurant_management.Customization.SendMail_Reservation.on_update"
     }
   
 }
