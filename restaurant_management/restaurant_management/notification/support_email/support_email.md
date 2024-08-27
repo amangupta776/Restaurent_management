@@ -1,3 +1,3 @@
-Name : {{doc.name1}}
+<p>Name : {{doc.name1}}
 subject : {{doc.subject}}
-Message :{{doc.message}}
+Message :{{doc.message}}</p>

@@ -6,12 +6,11 @@ const OrderTracking = () => {
   const { currentUser } = useFrappeAuth();
   const [error, setError] = useState(null);
 
-  // Fetch orders using Frappe's provider method
-  const { data: orders, error: fetchError, isLoading } = useFrappeGetDocList('Order', {
+  // Fetch orders only if currentUser is available
+  const { data: orders = [], error: fetchError, isLoading } = useFrappeGetDocList('Order', {
     fields: ['*'],
-    filters: {
-      customer: currentUser, // Use email instead of currentUser object
-    },
+    filters: currentUser ? { customer: currentUser } : {},
+    enabled: currentUser, 
   });
 
   useEffect(() => {
@@ -29,8 +28,8 @@ const OrderTracking = () => {
           <>
             {isLoading && <p className="text-center">Loading...</p>}
             {error && <p className="text-red-500 text-center">{error}</p>}
-            {orders?.length > 0 ? (
-              orders.map(order => (
+            {orders.length > 0 ? (
+              orders.map((order) => (
                 <div key={order.name} className="bg-gray-800 border border-gray-700 rounded-md p-4 mb-5 shadow-md">
                   <h3 className="text-xl font-semibold mb-2">Order #{order.name}</h3>
                   <p><strong>Status:</strong> {order.status}</p>

@@ -17,10 +17,13 @@ const ReservationForm = () => {
   // Fetch available tables
   const { data: tables, error: tablesError } = useFrappeGetDocList('Table', {
     filters: { status: 'Available' },
+    enabled: currentUser
   });
 
   // Fetch menu items
-  const { data: menuItems, error: menuItemsError } = useFrappeGetDocList('Menu Item');
+  const { data: menuItems, error: menuItemsError } = useFrappeGetDocList('Menu Item',{
+    enabled: currentUser
+  });
 
   // Using Frappe Create Doc hook for submitting the reservation
   const { createDoc, loading: submitting, error: submitError } = useFrappeCreateDoc();
@@ -116,7 +119,7 @@ const ReservationForm = () => {
     }
 
     const data = {
-      customer: currentUser, // Ensure customer is valid
+      customer: currentUser,
       table: e.target.table.value,
       reservation_date: e.target.reservation_date.value,
       reservation_time: reservationTime,
@@ -177,7 +180,7 @@ const ReservationForm = () => {
                 id="reservation_time" 
                 name="reservation_time" 
                 required 
-                min={currentTime} // Restrict time to current time onwards
+                min={currentTime} 
                 max="23:59"
                 onChange={handleReservationTimeChange}
                 className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" 
@@ -190,7 +193,7 @@ const ReservationForm = () => {
                 id="end_time" 
                 name="end_time" 
                 required 
-                min={currentTime} // Restrict time to current time onwards
+                min={currentTime} 
                 max="23:59"
                 value={endTime}
                 onChange={handleEndTimeChange}
@@ -216,7 +219,7 @@ const ReservationForm = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {reservationItems.map((item, index) => (
+                  {reservationItems&&reservationItems.map((item, index) => (
                     <tr key={index}>
                       <td className="border-b py-2 px-4">
                         <select

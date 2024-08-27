@@ -10,6 +10,7 @@
   "table",
   "reservation_date",
   "reservation_time",
+  "end_time",
   "status",
   "number_of_people",
   "reservation_items"
@@ -53,11 +54,16 @@
    "fieldtype": "Table",
    "label": "Reservation Items",
    "options": "Reservation Items"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-26 12:50:16.439336",
+ "modified": "2024-08-26 18:33:53.174580",
  "modified_by": "Administrator",
  "module": "Restaurant Management",
  "name": "Reservation",

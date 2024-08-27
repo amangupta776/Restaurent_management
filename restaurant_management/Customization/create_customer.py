@@ -1,5 +1,3 @@
-# custom_app/api.py
-
 import frappe
 from frappe import _
 

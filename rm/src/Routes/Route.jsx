@@ -5,6 +5,7 @@ import Menu from "../Screens/Menu";
 import ReservationForm from "../Screens/Resarvation";
 import Login from "../Screens/Login";
 import ContactUs from "../Screens/Contact";
+import TrackReservation from "../Screens/TrackReservationTrackReservation";
 const Routings = () => {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ const Routings = () => {
         <Route path="/reservation" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/trackreservation" element={<TrackReservation />} />
       </Routes>
     </BrowserRouter>
   );

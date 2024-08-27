@@ -20,6 +20,7 @@ def get_daily_order_count():
     if not count:
         return 0
     return {"value":count}
+
 @frappe.whitelist()
 def total_daily_sale():
     # Get today's date
