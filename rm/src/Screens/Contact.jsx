@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../Components/NavBar';
 import { useFrappeCreateDoc } from 'frappe-react-sdk';
 
 const ContactUs = () => {

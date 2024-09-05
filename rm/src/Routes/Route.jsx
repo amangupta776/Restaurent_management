@@ -5,7 +5,7 @@ import Menu from "../Screens/Menu";
 import ReservationForm from "../Screens/Resarvation";
 import Login from "../Screens/Login";
 import ContactUs from "../Screens/Contact";
-import TrackReservation from "../Screens/TrackReservationTrackReservation";
+import TrackReservation from "../Screens/TrackReservation";
 import Navbar from "../Components/NavBar";
 const Routings = () => {
   return (

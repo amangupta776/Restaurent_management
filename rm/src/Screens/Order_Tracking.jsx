@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFrappeAuth, useFrappeGetDocList } from 'frappe-react-sdk';
-import Navbar from '../Components/NavBar';
+
 
 const OrderTracking = () => {
   const { currentUser } = useFrappeAuth();

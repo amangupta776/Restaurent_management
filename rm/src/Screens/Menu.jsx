@@ -1,5 +1,4 @@
 import React, {useState } from 'react';
-import Navbar from '../Components/NavBar';
 import {  useFrappeGetDocList } from 'frappe-react-sdk';
 
 const Menu = () => {

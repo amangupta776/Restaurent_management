@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useFrappeAuth, useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
-import Navbar from '../Components/NavBar';
 import CheckReservation from '../Components/ReservationAvailability';
 
 const ReservationForm = () => {

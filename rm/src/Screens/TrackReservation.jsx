@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useFrappeAuth, useFrappeGetDocList } from 'frappe-react-sdk';
-import Navbar from '../Components/NavBar';
 
 const TrackReservation = () => {
   const { currentUser } = useFrappeAuth();
@@ -12,14 +11,16 @@ const TrackReservation = () => {
   const { data: fetchedReservations = [], error: fetchError } = useFrappeGetDocList('Reservation', {
     filters: currentUser ? { customer: currentUser } : {},
     fields: ["*"],
-    enabled: currentUser, 
+    enabled: currentUser,
   });
 
   useEffect(() => {
     if (fetchError) {
       setError('Error fetching reservations.');
     } else {
-      setFilteredReservations(fetchedReservations);
+      // Sort reservations by latest date before setting the filteredReservations
+      const sortedReservations = [...fetchedReservations].sort((a, b) => new Date(b.reservation_date) - new Date(a.reservation_date));
+      setFilteredReservations(sortedReservations);
     }
   }, [fetchedReservations, fetchError]);
 
@@ -27,17 +28,21 @@ const TrackReservation = () => {
   const handleFilterChange = (e) => {
     const { value } = e.target;
     setFilterStatus(value);
-
+  
     if (value) {
-      setFilteredReservations(fetchedReservations.filter((reservation) => reservation.status === value));
+      // Filter by status and then sort by latest date
+      const filteredByStatus = fetchedReservations
+        .filter((reservation) => reservation.status === value)
+        .sort((a, b) => new Date(b.reservation_date) - new Date(a.reservation_date));
+      setFilteredReservations(filteredByStatus);
     } else {
-      setFilteredReservations(fetchedReservations);
+      // If no status filter is applied, just sort by latest date
+      const sortedReservations = [...fetchedReservations].sort((a, b) => new Date(b.reservation_date) - new Date(a.reservation_date));
+      setFilteredReservations(sortedReservations);
     }
   };
-
   return (
     <div className="bg-gray-900 min-h-screen pt-16 text-white">
-   
       <div className="max-w-3xl mx-auto p-5 bg-gray-800 rounded-lg shadow-lg mt-12">
         <h2 className="text-center text-2xl font-bold mb-6">Track Reservation</h2>
         {currentUser ? (
