@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFrappeAuth, useFrappeGetDocList, useFrappeCreateDoc } from 'frappe-react-sdk';
 import Navbar from '../Components/NavBar';
-import { useNavigate } from 'react-router-dom';
 import CheckReservation from '../Components/ReservationAvailability';
 
 const ReservationForm = () => {
@@ -12,7 +11,8 @@ const ReservationForm = () => {
   const [error, setError] = useState(null);
   const [endTimeError, setEndTimeError] = useState(null);
   const [endTimeEnabled, setEndTimeEnabled] = useState(false);
-  const navigate = useNavigate();
+ 
+
 
   // Fetch available tables
   const { data: tables, error: tablesError } = useFrappeGetDocList('Table', {
@@ -39,8 +39,7 @@ const ReservationForm = () => {
 
   // Get today's date and current time
   const today = new Date().toISOString().split('T')[0];
-  const currentTime = new Date().toTimeString().split(' ')[0].slice(0, 5);
-
+ 
   const handleAddRow = () => {
     setReservationItems([...reservationItems, { item: '', quantity: '', specialRequests: '' }]);
   };
@@ -57,10 +56,11 @@ const ReservationForm = () => {
     setReservationItems(updatedItems);
   };
 
+
   const handleReservationTimeChange = (e) => {
     const { value } = e.target;
     setReservationTime(value);
-
+     
     // Enable end time field when reservation time is filled
     if (value) {
       setEndTimeEnabled(true);
@@ -84,7 +84,7 @@ const ReservationForm = () => {
 
       const minEndDate = new Date(resDate.getTime() + 30 * 60000); // 30 minutes in milliseconds
 
-      // Extract and parse end time
+    
       const [endHour, endMinute] = value.split(':').map(Number);
       const endDate = new Date();
       endDate.setHours(endHour, endMinute, 0, 0);
@@ -143,7 +143,7 @@ const ReservationForm = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen pt-16 text-white">
-      <Navbar />
+     
       {currentUser ? <CheckReservation /> : ""}
       <div className="max-w-lg mx-auto p-5 bg-gray-800 rounded-lg shadow-lg mt-12">
         <h2 className="text-center text-2xl font-bold mb-6">Reservation Form</h2>
@@ -180,8 +180,8 @@ const ReservationForm = () => {
                 id="reservation_time" 
                 name="reservation_time" 
                 required 
-                min={currentTime} 
-                max="23:59"
+                
+               
                 onChange={handleReservationTimeChange}
                 className="w-full p-3 border border-gray-600 rounded-lg bg-gray-700" 
               />
@@ -193,8 +193,8 @@ const ReservationForm = () => {
                 id="end_time" 
                 name="end_time" 
                 required 
-                min={currentTime} 
-                max="23:59"
+            
+         
                 value={endTime}
                 onChange={handleEndTimeChange}
                 disabled={!endTimeEnabled}

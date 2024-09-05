@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 const Home = () => {
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
-      <Navbar /> 
+ 
       
       <main className="flex-1 pt-20 pb-8 px-4"> 
         <div className="text-center">

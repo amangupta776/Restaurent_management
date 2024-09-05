@@ -30,7 +30,7 @@ const LoginPage = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen pt-16">
-      <Navbar />
+
       <div className="flex items-center justify-center h-full">
         <div className="w-full max-w-md p-8 bg-gray-800 shadow-lg rounded-md">
           <h2 className="text-2xl font-bold mb-6 text-center text-indigo-400">Login</h2>

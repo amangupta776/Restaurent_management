@@ -7,7 +7,10 @@ function App() {
   return (
 	<div className="App">
 	  <FrappeProvider>
-		<Routings/>
+		<Routings>
+	
+		</Routings>
+		
 	  </FrappeProvider>
 	</div>
   )

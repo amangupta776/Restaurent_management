@@ -32,7 +32,7 @@ const ContactUs = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen text-white">
-      <Navbar />
+     
       <div className="container mx-auto px-6 py-16 flex flex-col items-center">
         <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
         <p className="text-center mb-12 max-w-2xl">

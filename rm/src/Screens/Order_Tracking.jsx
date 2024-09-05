@@ -21,7 +21,7 @@ const OrderTracking = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen pt-16 text-white">
-      <Navbar />
+     
       <div className="w-4/5 mx-auto p-5 mt-16">
         <h2 className="text-center text-2xl font-bold mb-5">Track Your Order</h2>
         {currentUser ? (

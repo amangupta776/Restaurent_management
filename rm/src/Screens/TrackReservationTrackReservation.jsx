@@ -37,7 +37,7 @@ const TrackReservation = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen pt-16 text-white">
-      <Navbar />
+   
       <div className="max-w-3xl mx-auto p-5 bg-gray-800 rounded-lg shadow-lg mt-12">
         <h2 className="text-center text-2xl font-bold mb-6">Track Reservation</h2>
         {currentUser ? (

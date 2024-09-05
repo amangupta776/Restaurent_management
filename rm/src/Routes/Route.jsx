@@ -6,9 +6,11 @@ import ReservationForm from "../Screens/Resarvation";
 import Login from "../Screens/Login";
 import ContactUs from "../Screens/Contact";
 import TrackReservation from "../Screens/TrackReservationTrackReservation";
+import Navbar from "../Components/NavBar";
 const Routings = () => {
   return (
     <BrowserRouter>
+    <Navbar/>
       <Routes>
         <Route path="/" index element={<Home />} />
         <Route path="/order" element={<OrderTracking />} />

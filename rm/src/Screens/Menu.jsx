@@ -19,8 +19,6 @@ const Menu = () => {
 
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
-      {/* Navbar Component */}
-      <Navbar />
       
       <main className="flex-1 p-4">
         <div className="text-center">
