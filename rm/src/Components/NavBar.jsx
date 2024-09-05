@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useFrappeAuth } from 'frappe-react-sdk'; 
-import LogoutButton from '../Components/LogoutButton'
+import { Link } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext';
+import LogoutButton from '../Components/LogoutButton';
 
 const Navbar = () => {
-  const { currentUser } = useFrappeAuth(); 
-  const navigate = useNavigate(); 
+  const { authUser } = useAuth(); // Get auth state from AuthContext
 
   return (
     <nav className="bg-gray-900 text-gray-100 w-full fixed top-0 left-0 shadow-lg z-50">
@@ -15,28 +14,24 @@ const Navbar = () => {
           <li><Link to="/menu" className="hover:text-red-500 transition-colors duration-300">Menu</Link></li>
           <li><Link to="/reservation" className="hover:text-red-500 transition-colors duration-300">Reservations</Link></li>
           <li><Link to="/contact" className="hover:text-red-500 transition-colors duration-300">Contact Us</Link></li>
-          {(currentUser)?
-          <>
-           <li><Link to="/order" className="hover:text-red-500 transition-colors duration-300">Track Order</Link></li>
-          <li><Link to="/trackreservation" className="hover:text-red-500 transition-colors duration-300">Track Your Reservation</Link></li>
-          </>
-                 :""
-          }
+          {authUser && authUser !== "Guest" && (
+            <>
+              <li><Link to="/order" className="hover:text-red-500 transition-colors duration-300">Track Order</Link></li>
+              <li><Link to="/trackreservation" className="hover:text-red-500 transition-colors duration-300">Track Your Reservation</Link></li>
+            </>
+          )}
         </ul>
 
         <div className="flex items-center space-x-4">
-          {currentUser && currentUser !== "Guest" ? (
+          {authUser && authUser !== "Guest" ? (
             <>
-              <span className="text-gray-200">Welcome, {currentUser}</span>
+              <span className="text-gray-200">Welcome, {authUser}</span>
               <LogoutButton />
             </>
           ) : (
-            <button
-              onClick={() => navigate('/login')} // Navigate to the login page
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-transform duration-300 hover:scale-105"
-            >
+            <Link to="/login" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Login
-            </button>
+            </Link>
           )}
         </div>
       </div>
